@@ -1,7 +1,0 @@
-@extends('layouts.app')
-
-@section('content')
-    <h1>{{ $document->name }}</h1>
-    <a href="/documents/{{ $document->id }}/edit">Edit document</a>
-    <p>{{ $document->content }}</p>
-@endsection
