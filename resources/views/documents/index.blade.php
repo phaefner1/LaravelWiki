@@ -58,7 +58,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Content</th>
-                    <th>Action</th>
+                    <th class="d-flex justify-content-end">Action</th>
                 </tr>
             </thead>
             <tbody>
