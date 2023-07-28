@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label for="content" class="text-light">Content:</label>
-                <textarea id="content" name="content" class="form-control">{{ $document->content }}</textarea>
+                <textarea id="content" name="content" class="form-control" style="height: 70vh;">{{ $document->content }}</textarea>
             </div>
             <div class="text-center">
                 <input type="submit" value="Update Document" class="btn btn-primary">

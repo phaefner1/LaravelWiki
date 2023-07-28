@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #222;
+	    background-color: #343a40;
             color: #fff;
         }
         .container {
-            background-color: #333;
+            background-color: #1f2326;
             padding: 20px;
             border-radius: 5px;
             margin-top: 20px;
