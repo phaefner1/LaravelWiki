@@ -49,9 +49,13 @@
                         <form method="POST" action="/documents/{{ $document->id }}">
                             @csrf
                             @method('delete')
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </form>
-                    </td>
+			    <input type="submit" class="btn btn-danger" value="Delete">
+
+			    <a href="/documents/{{ $document->id }}/edit" class="btn btn-secondary ml-2">Edit</a>
+
+			    <a href="/documents/{{ $document->id }}" class="btn btn-primary ml-2">Show</a>
+			</form>
+		    </td>
                 </tr>
                 @endforeach
             </tbody>
