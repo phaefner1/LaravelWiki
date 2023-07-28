@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Document;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
-       public function index()
+    
+    public function index(Request $request)
     {
-        $documents = auth()->user()->documents;
+    	$query = $request->get('query');
+    	$documents = Document::where('user_id', Auth::id())
+                         ->where('name', 'like', '%'.$query.'%')
+                         ->get();
     	return view('documents.index', ['documents' => $documents]);
     }
 
