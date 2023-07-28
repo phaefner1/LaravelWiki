@@ -32,7 +32,8 @@
 </head>
 <body class="p-3">
     <div class="container">
-        <h1 class="text-center text-light mb-4">Create Document</h1>
+	<h1 class="text-center text-light mb-4">Create Document</h1>
+	<a href="/documents" class="btn btn-primary mb-3">Return</a>
         <form method="POST" action="/documents">
             @csrf
             <div class="form-group">

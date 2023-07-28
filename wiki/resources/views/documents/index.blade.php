@@ -19,7 +19,17 @@
 <body class="p-3">
     <h1 class="text-center text-light mb-4">Document List</h1>
     <div class="container">
-        <a href="/documents/create" class="btn btn-primary mb-3">Create document</a>
+	<a href="/documents/create" class="btn btn-primary mb-3">Create document</a>
+	<a class="btn btn-danger mb-3" href="{{ route('logout') }}"
+   	    onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+    	    Logout
+	</a>
+
+	<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    	    @csrf
+	</form>
+
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
@@ -33,8 +43,8 @@
                 @foreach ($documents as $document)
                 <tr>
                     <td>{{ $document->id }}</td>
-                    <td><a href="/documents/{{ $document->id }}" class="text-light">{{ $document->name }}</a></td>
-                    <td>{{ $document->content }}</td>
+		    <td><a href="/documents/{{ $document->id }}" class="text-light">{{ $document->name }}</a></td>
+		    <td>{{ $document->content }}</td>
                     <td>
                         <form method="POST" action="/documents/{{ $document->id }}">
                             @csrf

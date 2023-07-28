@@ -9,7 +9,7 @@ class DocumentController extends Controller
 {
        public function index()
     {
-        $documents = Document::all();
+        $documents = auth()->user()->documents;
     	return view('documents.index', ['documents' => $documents]);
     }
 
@@ -22,7 +22,8 @@ class DocumentController extends Controller
     {
         $document = new Document;
     	$document->name = $request->name;
-    	$document->content = $request->content;
+	$document->content = $request->content;
+	$document->user_id = auth()->id();
     	$document->save();
 
     	return redirect('/documents');
@@ -30,17 +31,24 @@ class DocumentController extends Controller
 
     public function show(Document $document)
     {
+	\Log::info('User ID: ' . auth()->id());
+	\Log::info('Document User ID: ' . $document->user_id);
+	\Log::info('Authorization result: ' . ($this->authorize('view', $document) ? 'true' : 'false'));
+	$this->authorize('view', $document);
     	return view('documents.show', ['document' => $document]);
+        // return "Test";
     }
 
     public function destroy(Document $document)
     {
+	$this->authorize('delete', $document);
         $document->delete();
     	return redirect('/documents');
     }
 
     public function edit(Document $document)
     {
+	$this->authorize('update', $document);
     	return view('documents.edit', ['document' => $document]);
     }
 
@@ -52,4 +60,5 @@ class DocumentController extends Controller
 
     	return redirect('/documents');
     }
+
 }

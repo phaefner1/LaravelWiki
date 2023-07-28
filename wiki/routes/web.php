@@ -14,14 +14,30 @@ use App\Http\Controllers\DocumentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function () {
+    Route::get('/documents', [DocumentController::class, 'index']);
+    Route::get('/documents/create', [DocumentController::class, 'create']);
+    Route::post('/documents', [DocumentController::class, 'store']);
+    Route::get('/documents/{document}', [DocumentController::class, 'show']);
+    Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
+    Route::get('/documents/{document}/edit', [DocumentController::class, 'edit']);
+    Route::put('/documents/{document}', [DocumentController::class, 'update']);
 });
 
-Route::get('/documents', [DocumentController::class, 'index']);
-Route::get('/documents/create', [DocumentController::class, 'create']);
-Route::post('/documents', [DocumentController::class, 'store']);
-Route::get('/documents/{document}', [DocumentController::class, 'show']);
-Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
-Route::get('/documents/{document}/edit', [DocumentController::class, 'edit']);
-Route::put('/documents/{document}', [DocumentController::class, 'update']);
+Route::get('/', function () {
+    if (auth()->check()) {
+        $documents = auth()->user()->documents;
+        return view('documents.index', ['documents' => $documents]);
+    }
+    return redirect('/login');
+});
+
+Route::get('/dashboard', function () {
+    if (auth()->check()) {
+        $documents = auth()->user()->documents;
+        return view('documents.index', ['documents' => $documents]);
+    }
+    return redirect('/login');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
