@@ -1,0 +1,46 @@
+/vendor
+/node_modules
+
+# Laravel 4 specific
+/bootstrap/compiled.php
+/app/storage/meta/*
+/app/storage/sessions/*
+/app/storage/views/*
+
+# Laravel 5 & 6 specific
+/storage/*.key
+/.env.local
+/.env.*.local
+/.env.*.local.php
+/.env.staging.php
+/.env.production.php
+/.env.testing.php
+Homestead.yaml
+Homestead.json
+.env
+.env.backup
+.env.save
+.phpunit.result.cache
+
+# Ignore public/storage
+/public/storage
+
+# Ignore IDE and editor files
+/.idea
+/.vscode
+*.swp
+*.swo
+*.swn
+*.bak
+*.cof
+*.tgz
+*.log
+.DS_Store
+
+# Ignore Phpstorm project files, .idea folders
+/.idea
+# NetBeans project directory
+/nbproject/
+
+# VS Code 
+/.vscode/
