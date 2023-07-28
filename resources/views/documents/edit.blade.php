@@ -11,7 +11,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Edit Document</h1>
-        <form method="POST" action="/documents/{{ $document->id }}">
+	<form method="POST" action="/documents/{{ $document->id }}">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -24,7 +24,8 @@
             </div>
             <div class="text-center">
                 <input type="submit" value="Update Document" class="btn btn-primary">
-            </div>
+		<a href="/documents" class="btn btn-primary ml-2">Return</a>
+	    </div>
         </form>
     </div>
 
