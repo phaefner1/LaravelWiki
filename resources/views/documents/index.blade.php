@@ -43,7 +43,7 @@
                 @foreach ($documents as $document)
                 <tr>
                     <td>{{ $document->id }}</td>
-		    <td><a href="/documents/{{ $document->id }}" class="text-light">{{ Str::limit( $document->name, 10, '...')  }}</a></td>
+		    <td><a href="/documents/{{ $document->id }}" class="text-light">{{ Str::limit( $document->name, 20, '...')  }}</a></td>
 		    <td>{{ Str::limit($document->content, 20, '...') }}</td>
 		    <td>
                         <form method="POST" action="/documents/{{ $document->id }}">
