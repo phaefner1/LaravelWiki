@@ -25,11 +25,16 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
-        $document = new Document;
+	$request->validate([
+            'name' => 'required',
+            'content' => 'required',
+        ]);    
+	    
+	$document = new Document;
     	$document->name = $request->name;
 	$document->content = $request->content;
 	$document->user_id = auth()->id();
-    	$document->save();
+	$document->save();
 
     	return redirect('/documents');
     }
@@ -54,11 +59,18 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
 	$this->authorize('update', $document);
-    	return view('documents.edit', ['document' => $document]);
+        return view('documents.edit', ['document' => $document]);  
     }
 
     public function update(Request $request, Document $document)
     {
+        $this->authorize('update', $document);
+
+    	$validatedData = $request->validate([
+            'name' => 'required',
+            'content' => 'required',
+        ]);
+
     	$document->name = $request->name;
     	$document->content = $request->content;
     	$document->save();
